@@ -1,1 +1,5 @@
 ebay_data/items-*
+*.pyc
+**/jinja2/*.pyc
+**/*.pyc
+web.py/lib/jinja2/*.pyc
