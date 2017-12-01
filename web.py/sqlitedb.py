@@ -1,8 +1,6 @@
 import web
 
-db = web.database(dbn='sqlite',
-        db='[YOUR SQLite DATABASE FILENAME]' #TODO: add your SQLite database filename
-    )
+db = web.database(dbn=‘sqlite’, db=‘auctions.db’)
 
 ######################BEGIN HELPER METHODS######################
 

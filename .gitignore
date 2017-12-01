@@ -4,3 +4,4 @@ ebay_data/items-*
 **/*.pyc
 **/*.dat
 **/AuctionBase
+web.py/auctions.db
