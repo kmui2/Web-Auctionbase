@@ -28,13 +28,9 @@ def transaction():
 
 # returns the current time from your database
 def getTime():
-    # TODO: update the query string to match
-    # the correct column and table name in your database
     query_string = 'select Time from CurrentTime'
     results = query(query_string)
-    # alternatively: return results[0]['currenttime']
-    return results[0].Time # TODO: update this as well to match the
-                                  # column name
+    return results[0].Time
 
 # returns a single item specified by the Item's ID in the database
 # Note: if the `result' list is empty (i.e. there are no items for a
@@ -48,9 +44,21 @@ def getItemById(item_id):
 # wrapper method around web.py's db.query method
 # check out http://webpy.org/cookbook/query for more info
 def query(query_string, vars = {}):
-    return list(db.query(query_string, vars))
+    return db.query(query_string, vars)
 
 #####################END HELPER METHODS#####################
 
 #TODO: additional methods to interact with your database,
 # e.g. to update the current time
+
+def updateCurrentTime(time):
+    t = transaction()
+    query_string = 'UPDATE CurrentTime SET Time = $time'
+    try:
+        query(query_string, {'time': time})
+    except Exception as e:
+        t.rollback()
+        print str(e)
+    else:
+        t.commit()
+    pass
