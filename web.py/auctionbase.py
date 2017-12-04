@@ -65,6 +65,16 @@ class search:
 class add_bid:
     def GET(self):
         return render_template('add_bid.html')
+    def POST(self):
+        post_params = web.input()
+        itemID = post_params['itemID']
+        userID = post_params['userID']
+        price = post_params['price']
+        add_result = False
+        if sqlitedb.getItemEnd(itemID) > string_to_time(sqlitedb.getTime()):
+            add_result = sqlitedb.addBid(itemID, userID, price, sqlitedb.getTime())
+        return render_template('add_bid.html', add_result = add_result)
+
 
 class curr_time:
     # A simple GET request, to '/currtime'
