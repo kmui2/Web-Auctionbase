@@ -75,10 +75,5 @@ def addBid(itemID, UserID, amount, time):
         print str(e)
         return False
     else:
-        try:
-            t.commit()
-            return True
-        except Exception as e:
-            t.rollback()
-            print str(e)
-            return False
+        t.commit()
+        return True
