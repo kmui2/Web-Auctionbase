@@ -65,12 +65,6 @@ def updateCurrentTime(time):
     else:
         t.commit()
 
-def getItemEnd(item_id):
-    item = getItemById(item_id)
-    print item
-    return item.Ends
-    pass
-
 def addBid(itemID, UserID, amount, time):
     t = transaction()
     query_string = 'INSERT INTO Items VALUES ($ItemID, $UserID, $Amount, $Time)'

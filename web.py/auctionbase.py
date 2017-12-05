@@ -70,9 +70,7 @@ class add_bid:
         itemID = post_params['itemID']
         userID = post_params['userID']
         price = post_params['price']
-        add_result = False
-        if sqlitedb.getItemEnd(itemID) > string_to_time(sqlitedb.getTime()):
-            add_result = sqlitedb.addBid(itemID, userID, price, sqlitedb.getTime())
+        add_result = sqlitedb.addBid(itemID, userID, price, sqlitedb.getTime())
         return render_template('add_bid.html', add_result = add_result)
 
 
