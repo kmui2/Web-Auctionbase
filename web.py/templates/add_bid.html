@@ -21,11 +21,13 @@
 	<div class="form-group"><input type="submit" value="Add bid" class="btn btn-primary"/></div>
 </form>
 </center>
+{% if add_result is defined %}
 <h3>Result</h3>
 {% if add_result %}
 <div class="alert alert-success">Successful</div>
 {% else %}
 <div class="alert alert-danger">Not successful</div>
+{% endif %}
 {% endif %}
 
 

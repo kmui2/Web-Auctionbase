@@ -67,7 +67,7 @@ def updateCurrentTime(time):
 
 def addBid(itemID, UserID, amount, time):
     t = transaction()
-    query_string = 'INSERT INTO Items VALUES ($ItemID, $UserID, $Amount, $Time)'
+    query_string = 'INSERT INTO Bids VALUES ($ItemID, $UserID, $Amount, $Time)'
     try:
         query(query_string, {'ItemID': itemID, 'UserID': UserID, 'Amount': amount, 'Time': time})
     except Exception as e:
@@ -75,5 +75,10 @@ def addBid(itemID, UserID, amount, time):
         print str(e)
         return False
     else:
-        t.commit()
-        return True
+        try:
+            t.commit()
+            return True
+        except Exception as e:
+            t.rollback()
+            print str(e)
+            return False
