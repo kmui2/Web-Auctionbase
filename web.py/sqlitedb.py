@@ -62,6 +62,7 @@ def updateCurrentTime(time):
     except Exception as e:
         t.rollback()
         print str(e)
+        return False
     else:
         t.commit()
 
@@ -75,5 +76,23 @@ def addBid(itemID, UserID, amount, time):
         print str(e)
         return False
     else:
+        try:
+          t.commit()
+          return True
+        except Exception as e:
+          t.rollback()
+          print str(e)
+          return False
+
+def search(itemID, UserID, minPrice, maxPrice, status):
+    t = transaction()
+    query_string = ''
+    try:
+        query(query_string, {'ITEMID': itemID, 'UserID': UserID, 'minPrice': minPrice, 'maxPrice': maxPrice, 'status': status})
+    except Exception as e:
+        t.rollback()
+        print str(e)
+        return False
+    else:
         t.commit()
-        return True
+    return True

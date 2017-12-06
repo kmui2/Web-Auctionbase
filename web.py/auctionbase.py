@@ -61,6 +61,16 @@ urls = ('/currtime', 'curr_time',
 class search:
     def GET(self):
         return render_template('search.html')
+    def POST(self):
+        post_params = web.input()
+        itemID = post_params['itemID']
+        userID = post_params['userID']
+        minPrice = post_params['minPrice']
+        maxPrice = post_params['maxPrice']
+        status = post_params['status']
+        add_result = sqlitedb.search(itemID, userID, minPrice, maxPrice, status)
+
+
 
 class add_bid:
     def GET(self):
@@ -107,7 +117,8 @@ class select_time:
         selected_time = '%s-%s-%s %s:%s:%s' % (yyyy, MM, dd, HH, mm, ss)
         update_message = '(Hello, %s. Previously selected time was: %s.)' % (enter_name, selected_time)
         # save the selected time as the current time in the database
-        sqlitedb.updateCurrentTime(selected_time)
+        if(sqlitedb.updateCurrentTime(selected_time) == False):
+          update_message = 'Update Failed, clock can only advance forward'
 
         # Here, we assign `update_message' to `message', which means
         # we'll refer to it in our template as `message'
