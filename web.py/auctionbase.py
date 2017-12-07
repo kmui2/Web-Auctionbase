@@ -131,10 +131,11 @@ class view_auction:
         id = params['id']
         # need to query the database using the id to find all data that we need to display
         item = sqlitedb.getItemById(id)
-        # TODO: find the other info that we need to display that's not in the item object, such as
-        # all of its bids
-        # print(item)
-        return render_template('view_auction.html', name = item.Name)	 
+        categories = sqlitedb.getCategoriesForItemId(id)
+        bids = sqlitedb.getBidsForItemId(id)
+        status = sqlitedb.getAuctionStatusForItemId(id)
+        winner = sqlitedb.getWinnerForItemId(id)
+        return render_template('view_auction.html', item = item, categories = categories, bids = bids, status = status, winner = winner)
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
 ###########################################################################################
