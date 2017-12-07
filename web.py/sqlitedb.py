@@ -37,7 +37,7 @@ def getTime():
 # a given ID), this will throw an Exception!
 def getItemById(item_id):
     # TODO: rewrite this method to catch the Exception in case `result' is empty
-    query_string = 'select * from Items where item_ID = $itemID'
+    query_string = 'select * from Items where itemID = $itemID'
     try:
         result = query(query_string, {'itemID': item_id})
         return result[0]

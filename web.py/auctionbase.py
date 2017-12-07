@@ -55,7 +55,8 @@ urls = ('/currtime', 'curr_time',
         # TODO: add additional URLs here
         # first parameter => URL, second parameter => class name
         '/add_bid', 'add_bid',
-        '/search', 'search'
+        '/search', 'search',
+        '/auction', 'view_auction'
         )
 
 class search:
@@ -113,6 +114,16 @@ class select_time:
         # we'll refer to it in our template as `message'
         return render_template('select_time.html', message = update_message)
 
+class view_auction:
+    def GET(self):
+        params = web.input()
+        id = params['id']
+        # need to query the database using the id to find all data that we need to display
+        item = sqlitedb.getItemById(id)
+        # TODO: find the other info that we need to display that's not in the item object, such as
+        # all of its bids
+        # print(item)
+        return render_template('view_auction.html', name = item.Name)	 
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
 ###########################################################################################
