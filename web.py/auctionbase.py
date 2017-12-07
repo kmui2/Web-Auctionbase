@@ -55,8 +55,7 @@ urls = ('/currtime', 'curr_time',
         # TODO: add additional URLs here
         # first parameter => URL, second parameter => class name
         '/add_bid', 'add_bid',
-        '/search', 'search',
-        '/auction', 'view_auction'
+        '/search', 'search'
         )
 
 class search:
@@ -69,8 +68,11 @@ class search:
         minPrice = post_params['minPrice']
         maxPrice = post_params['maxPrice']
         status = post_params['status']
-        add_result = sqlitedb.search(itemID, userID, minPrice, maxPrice, status)
-        return render_template('search.html', add_result = add_result)
+        category = post_params['category']
+        itemDescription = post_params['itemDescription']
+        time = sqlitedb.getTime()
+        search_result = sqlitedb.search(itemID, userID, minPrice, maxPrice, status, time, category, itemDescription)
+        return render_template('search.html', search_result = search_result)
 
 
 class add_bid:
@@ -104,7 +106,7 @@ class select_time:
     # You can fetch the parameters passed to the URL
     # by calling `web.input()' for **both** POST requests
     # and GET requests
-    def POST(self):
+def POST(self):
         post_params = web.input()
         MM = post_params['MM']
         dd = post_params['dd']
@@ -125,17 +127,6 @@ class select_time:
         # we'll refer to it in our template as `message'
         return render_template('select_time.html', message = update_message)
 
-class view_auction:
-    def GET(self):
-        params = web.input()
-        id = params['id']
-        # need to query the database using the id to find all data that we need to display
-        item = sqlitedb.getItemById(id)
-        categories = sqlitedb.getCategoriesForItemId(id)
-        bids = sqlitedb.getBidsForItemId(id)
-        status = sqlitedb.getAuctionStatusForItemId(id)
-        winner = sqlitedb.getWinnerForItemId(id)
-        return render_template('view_auction.html', item = item, categories = categories, bids = bids, status = status, winner = winner)
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
 ###########################################################################################
