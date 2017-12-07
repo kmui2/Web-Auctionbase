@@ -69,7 +69,7 @@ class search:
         maxPrice = post_params['maxPrice']
         status = post_params['status']
         add_result = sqlitedb.search(itemID, userID, minPrice, maxPrice, status)
-
+        return render_template('search.html', add_result = add_result)
 
 
 class add_bid:

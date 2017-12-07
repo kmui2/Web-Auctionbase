@@ -47,6 +47,10 @@ def getItemById(item_id):
 # wrapper method around web.py's db.query method
 # check out http://webpy.org/cookbook/query for more info
 def query(query_string, vars = {}):
+    print vars
+    d= db.query(query_string, vars)
+    for item in d:
+      print item
     return db.query(query_string, vars)
 
 #####################END HELPER METHODS#####################
@@ -86,13 +90,13 @@ def addBid(itemID, UserID, amount, time):
 
 def search(itemID, UserID, minPrice, maxPrice, status):
     t = transaction()
-    query_string = ''
+    query_string = 'SELECT * FROM Items'
     try:
-        query(query_string, {'ITEMID': itemID, 'UserID': UserID, 'minPrice': minPrice, 'maxPrice': maxPrice, 'status': status})
+        q = query(query_string, {'ITEMID': itemID, 'UserID': UserID, 'minPrice': minPrice, 'maxPrice': maxPrice, 'status': status})
     except Exception as e:
         t.rollback()
         print str(e)
         return False
     else:
         t.commit()
-    return True
+        return q
