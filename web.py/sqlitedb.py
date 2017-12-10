@@ -88,9 +88,9 @@ def search(ItemID, UserID, minPrice, maxPrice, status, time, category, itemDescr
     itemDescription = '%'+itemDescription+'%'
     t = transaction()
     if(category == ''):
-      query_string = "SELECT i.* FROM Items i WHERE "
+      query_string = "SELECT * FROM Items i WHERE "
     else:
-      query_string = "SELECT i.* FROM Items i, Categories c WHERE "
+      query_string = "SELECT * FROM Items i, Categories c WHERE "
     if ItemID != '':
 			query_string = query_string + "i.ItemID == $ItemID AND"
     if UserID != '':
@@ -102,7 +102,7 @@ def search(ItemID, UserID, minPrice, maxPrice, status, time, category, itemDescr
     if category != '':
       query_string = query_string + " i.ItemID == c.ItemID AND c.Category == $category AND"
     if itemDescription != '':
-      query_string = query_string + " i.Description LIKE $itemDescription"
+      query_string = query_string + " i.Description LIKE $itemDescription AND"
 
     if str(status) == "notStarted":
 			query_string = query_string + " i.Started > $time"

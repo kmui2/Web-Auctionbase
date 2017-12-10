@@ -106,7 +106,8 @@ class select_time:
     # You can fetch the parameters passed to the URL
     # by calling `web.input()' for **both** POST requests
     # and GET requests
-def POST(self):
+    def POST(self):
+        print 'start post'
         post_params = web.input()
         MM = post_params['MM']
         dd = post_params['dd']
@@ -121,10 +122,11 @@ def POST(self):
         update_message = '(Hello, %s. Previously selected time was: %s.)' % (enter_name, selected_time)
         # save the selected time as the current time in the database
         if(sqlitedb.updateCurrentTime(selected_time) == False):
-          update_message = 'Update Failed, clock can only advance forward'
+            update_message = 'Update Failed, clock can only advance forward'
 
         # Here, we assign `update_message' to `message', which means
         # we'll refer to it in our template as `message'
+        print 'try to rendewr'
         return render_template('select_time.html', message = update_message)
 
 ###########################################################################################
