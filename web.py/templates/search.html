@@ -51,7 +51,15 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<span>{{ result[key]|e }}</span>
 		</div>
-  	{% endfor %}
+		{% endfor %}
+		<form method="POST" action="auction" role="form" style="max-width:400px; width:100%">
+			
+			<div class="form-group">
+				<input type="hidden" name="id" class="form-control" id="id" value={{ result['ItemID'] }} />
+			</div>
+			<div><input type="submit" value="See More Details" class="btn btn-primary" /></div>
+			
+	</form>
   	<div>--------</div>
 {% endfor %}
 {% else %}

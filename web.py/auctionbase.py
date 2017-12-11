@@ -133,7 +133,7 @@ class select_time:
         return render_template('select_time.html', message = update_message)
 
 class view_auction:
-    def GET(self):
+    def POST(self):
         params = web.input()
         id = params['id']
         # need to query the database using the id to find all data that we need to display
@@ -142,6 +142,25 @@ class view_auction:
         bids = sqlitedb.getBidsForItemId(id)
         status = sqlitedb.getAuctionStatusForItemId(id)
         winner = sqlitedb.getWinnerForItemId(id)
+        print
+        print 'id = ' 
+        print id
+        print
+        print 'item = ' 
+        print item
+        print
+        print 'categories = '
+        print categories
+        print
+        print 'bids = '
+        print bids
+        print
+        print 'status = '
+        print status
+        print
+        print 'winner = '
+        print winner
+        print
         return render_template('view_auction.html', item = item, categories = categories, bids = bids, status = status, winner = winner)
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
