@@ -143,6 +143,8 @@ class view_auction:
         winner = 'Auction Still Open or Not Opened'
         if status == 'Closed':
             winner = sqlitedb.getWinnerForItemId(id)
+            if winner == None:
+                winner = 'There is no winner because there were no bids.'
         print
         print 'id = ' 
         print id

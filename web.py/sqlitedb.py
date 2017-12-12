@@ -71,8 +71,10 @@ def getAuctionStatusForItemId(item_id):
         endTime = string_to_time(results['Ends'])
         if currentTime < endTime and currentTime > startTime:
             return 'Open'
-        else:
+        elif currentTime >= endTime:
             return 'Closed'
+        else:
+            return 'Not Started'
     except Exception as e:
         print str(e)
 

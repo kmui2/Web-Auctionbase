@@ -1,0 +1,8 @@
+Trigger 1: Enforces new selected times to only be after the current time
+Trigger 2: Enforces that the new time for a bid is the current time
+Trigger 3: Rejects bid amounts less than current item price
+Trigger 4: Updates number of bids in item table for every bid
+Trigger 5: Prevents bidding on an unstarted auction
+Trigger 6: Prevents bidding on a closed auction
+Trigger 7: Prevents the seller from bidding
+Trigger 8: Sets current item price to the latest accepted bid
