@@ -22,6 +22,20 @@
 {% endfor %}
 
 
+<h4>Bids (First Bid is on Top): </h4>
+{% for bid in bids %}
+	{% for key in bid %}
+		<div>
+			<span>{{ key|e }}</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span>{{ bid[key]|e }}</span>
+		</div>
+	{% endfor %}
+	<br />
+{% endfor %}
+
+
+
 <div>--------</div>
 
 {% endblock %}
