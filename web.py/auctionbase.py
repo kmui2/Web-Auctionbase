@@ -109,7 +109,6 @@ class select_time:
     # by calling `web.input()' for **both** POST requests
     # and GET requests
     def POST(self):
-        print 'start post'
         post_params = web.input()
         MM = post_params['MM']
         dd = post_params['dd']
@@ -128,7 +127,6 @@ class select_time:
 
         # Here, we assign `update_message' to `message', which means
         # we'll refer to it in our template as `message'
-        print 'try to rendewr'
         return render_template('select_time.html', message = update_message)
 
 class view_auction:
@@ -145,25 +143,6 @@ class view_auction:
             winner = sqlitedb.getWinnerForItemId(id)
             if winner == None:
                 winner = 'There is no winner because there were no bids.'
-        print
-        print 'id = ' 
-        print id
-        print
-        print 'item = ' 
-        print item
-        print
-        print 'categories = '
-        print categories[0]['Category']
-        print
-        print 'bids = '
-        print bids
-        print
-        print 'status = '
-        print status
-        print
-        print 'winner = '
-        print winner
-        print
         return render_template('view_auction.html', id=id, item = item, categories = categories, bids = bids, status = status, winner = winner)
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
