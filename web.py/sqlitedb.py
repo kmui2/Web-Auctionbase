@@ -77,10 +77,10 @@ def getAuctionStatusForItemId(item_id):
         print str(e)
 
 def getWinnerForItemId(item_id):
-    query_string = 'select UserID from Bids where itemId = $itemID order by Amount DESC Limit 1'
+    query_string = 'select UserID from Bids where ItemID = $itemID order by Amount DESC Limit 1'
     try:
-        result = query(query_string, {'itemID': item_id})
-        return result[0]['UserID']
+        results = query(query_string, {'itemID': int(item_id)})
+        return results[0]['UserID']
     except Exception as e:
         print str(e)
 

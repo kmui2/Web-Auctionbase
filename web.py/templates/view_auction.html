@@ -4,9 +4,9 @@
 
 <div>id: {{id}}</div>
 <div>
-	Categories 
-	{% for category in categories %}
-		<span>{{ category }}</span>
+	Categories: 
+	{% for storage in categories %}
+		<span>{{ storage['Category'] }}, </span>
 	{% endfor %}
 </div>
 <div>status: {{ status }}</div>

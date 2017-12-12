@@ -141,7 +141,9 @@ class view_auction:
         categories = sqlitedb.getCategoriesForItemId(id)
         bids = sqlitedb.getBidsForItemId(id)
         status = sqlitedb.getAuctionStatusForItemId(id)
-        winner = sqlitedb.getWinnerForItemId(id)
+        winner = 'Auction Still Open or Not Opened'
+        if status == 'Closed':
+            winner = sqlitedb.getWinnerForItemId(id)
         print
         print 'id = ' 
         print id
@@ -150,7 +152,7 @@ class view_auction:
         print item
         print
         print 'categories = '
-        print categories
+        print categories[0]['Category']
         print
         print 'bids = '
         print bids
@@ -161,7 +163,7 @@ class view_auction:
         print 'winner = '
         print winner
         print
-        return render_template('view_auction.html', item = item, categories = categories, bids = bids, status = status, winner = winner)
+        return render_template('view_auction.html', id=id, item = item, categories = categories, bids = bids, status = status, winner = winner)
 ###########################################################################################
 ##########################DO NOT CHANGE ANYTHING BELOW THIS LINE!##########################
 ###########################################################################################
