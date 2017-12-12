@@ -74,7 +74,6 @@ class search:
         time = sqlitedb.getTime()
         search_result = sqlitedb.search(itemID, userID, minPrice, maxPrice, status, time, category, itemDescription)
         # buy price is None
-        print search_result[0]
         return render_template('search.html', search_result = search_result)
 
 
