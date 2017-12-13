@@ -1,4 +1,3 @@
-ebay_data/items-*
 *.pyc
 **/jinja2/*.pyc
 **/*.pyc
