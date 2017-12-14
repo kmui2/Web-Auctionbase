@@ -156,7 +156,6 @@ def search(ItemID, UserID, minPrice, maxPrice, status, time, category, itemDescr
 			query_string = query_string[:-3]
     if(query_string.endswith(' WHERE ')):
       query_string = query_string[:-6]
-    print query_string
     try:
         q = query(query_string, {'ItemID': ItemID, 'UserID': UserID, 'minPrice': minPrice, 'maxPrice': maxPrice, 'status': status, 'time': time, 'category': category, 'itemDescription': itemDescription})
     except Exception as e:
